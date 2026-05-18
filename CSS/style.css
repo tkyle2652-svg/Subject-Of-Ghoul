@@ -1,0 +1,34 @@
+
+:root {
+	--bg-start: #000000;
+	--bg-end: #ffffff;
+	--bg-angle: 180deg;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	/* Black to white vertical gradient using variables */
+	background: linear-gradient(var(--bg-angle), var(--bg-start) 0%, var(--bg-end) 100%);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+/* Ghoul/logo image sizing and alignment */
+.logo {
+	width: 200px;
+	height: auto;
+	display: block;
+}
+
+/* Helper to align the logo to the left */
+.logo-left {
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+}
+
