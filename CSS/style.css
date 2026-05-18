@@ -4,7 +4,7 @@
 	--white: #ffffff;
 	--bg-angle: 180deg;
 
-        --text-color: #F4F9FF;
+    --text-color: #F4F9FF;
     --muted-text: #A8BACF;
 
     --primary-accent: #4CD1E0;
@@ -47,7 +47,8 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 2rem;
-  background: linear-gradient(180deg, #071425 0%, #0f2a3a 100%);
+  background: linear-gradient(var(--bg-angle), var(--black) 0%, var(--white) 100%);
+  background-attachment: fixed;
 }
 
 /* Logo */
@@ -75,12 +76,12 @@ body {
 .site-nav a {
   color: var(--text-color);
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1.6rem;
+  font-weight: 1000;
+  font-size: 3rem;
   transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
 .site-nav a:hover {
-  color: var(--primary-accent);
+  color: var(--black);
   text-shadow: var(--hover-glow);
 }
