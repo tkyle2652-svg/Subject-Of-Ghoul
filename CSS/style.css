@@ -1,8 +1,31 @@
 
 :root {
-	--bg-start: #000000;
-	--bg-end: #ffffff;
+	--black: #000000;
+	--white: #ffffff;
 	--bg-angle: 180deg;
+
+        --text-color: #F4F9FF;
+    --muted-text: #A8BACF;
+
+    --primary-accent: #4CD1E0;
+    --secondary-accent: #FFB66F;
+    --accent-strong: #F8A55E;
+
+    --background-color: var(--background-main);
+    --white: #FFFFFF;
+    --red: #E31837;
+    --lightblue: #4CD1E0;
+    --yellow: #FFB66F;
+
+    --main-gradient: linear-gradient(135deg, #0A1D2C, #122B44, #17334A);
+    --glass-bg: rgba(16, 31, 52, 0.75);
+    --hover-glow: 0 0 16px rgba(76, 209, 224, 0.28);
+    --shadow: rgba(0, 0, 0, 0.28);
+
+    --clr-white: #FFFFFF;
+    --clr-pink: #FF8AA5;
+    --transition: 0.3s ease-in-out;
+    --transition-duration: 0.3s ease-in-out;
 }
 
 html, body {
@@ -13,22 +36,51 @@ html, body {
 
 body {
 	/* Black to white vertical gradient using variables */
-	background: linear-gradient(var(--bg-angle), var(--bg-start) 0%, var(--bg-end) 100%);
+	background: linear-gradient(var(--bg-angle), var(--black) 0%, var(--white) 100%);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
 
-/* Ghoul/logo image sizing and alignment */
+/* Header / Navbar (logo + nav) */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  background: linear-gradient(180deg, #071425 0%, #0f2a3a 100%);
+}
+
+/* Logo */
 .logo {
-	width: 200px;
-	height: auto;
-	display: block;
+  width: 220px;
+  height: auto;
+  display: block;
 }
 
-/* Helper to align the logo to the left */
-.logo-left {
-    display: block;
-    margin-left: 0;
-    margin-right: auto;
+.logo-container {
+  display: flex;
+  align-items: center;
 }
 
+/* Navigation */
+.site-nav .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.site-nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.6rem;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.site-nav a:hover {
+  color: var(--primary-accent);
+  text-shadow: var(--hover-glow);
+}
