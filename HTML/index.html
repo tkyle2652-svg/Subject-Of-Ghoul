@@ -247,11 +247,23 @@
   </main>
 
   <footer class="site-footer section-shell">
-    <div class="footer-status panel" aria-label="Community information">
-      <div><span>Community</span><strong>Scouts welcome</strong></div>
-      <div><span>Game</span><strong>Attack on Titan Revolution</strong></div>
-      <div><span>Play on</span><strong>Roblox</strong></div>
-      <div><span>Our focus</span><strong>Squad up. Rise together.</strong></div>
+    <div class="footer-status panel" aria-label="Live community status">
+      <div class="status-metric">
+        <span class="metric-label"><span class="status-light" id="discord-status-light"></span>Server status</span>
+        <strong id="discord-server-status" aria-live="polite">Checking…</strong>
+      </div>
+      <div class="status-metric">
+        <span class="metric-label"><span class="status-light" id="discord-active-light"></span>Active Discord (approx.)</span>
+        <strong id="discord-active-count" aria-live="polite">Loading…</strong>
+      </div>
+      <div class="status-metric">
+        <span class="metric-label">Regiment time <span class="local-time-label">(your local time)</span></span>
+        <strong id="regiment-time">--:--:--</strong>
+      </div>
+      <div class="status-metric">
+        <span class="metric-label">Connection</span>
+        <strong id="connection-status">Checking…</strong>
+      </div>
     </div>
     <div class="footer-cta">
       <p class="eyebrow">Final transmission</p>

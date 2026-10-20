@@ -1051,7 +1051,10 @@ p {
   border-right: 0;
 }
 
-.footer-status span {
+.footer-status .metric-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   color: var(--gold);
   font-size: 8px;
   font-weight: 800;
@@ -1059,9 +1062,42 @@ p {
   text-transform: uppercase;
 }
 
+.status-light {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.status-light.is-online {
+  background: #f04747;
+  box-shadow: 0 0 9px rgba(240, 71, 71, 0.38);
+}
+
+.status-light.is-active {
+  background: #f04747;
+  box-shadow: 0 0 9px rgba(240, 71, 71, 0.38);
+}
+
+.status-light.is-secure {
+  background: #71c784;
+  box-shadow: 0 0 9px rgba(113, 199, 132, 0.38);
+}
+
+.footer-status .local-time-label {
+  color: #777;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
 .footer-status strong {
   font-family: var(--serif);
   font-size: 15px;
+}
+
+.footer-status strong.is-secure {
+  color: #71c784;
 }
 
 .footer-cta {
