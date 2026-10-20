@@ -1,172 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject Of Ghouls</title>
-
-    <!-- Link to CSS -->
-     <link rel="stylesheet" href="../CSS/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Join Subject of Ghouls, a community for Attack on Titan Revolution players. Find game resources, highlights, and your next squad.">
+  <title>Subject of Ghouls — AOT Revolution Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="logo-container">
-      <a href="../HTML/index.html">
-        <img src="../images/Ghoul.png" alt="Ghoul logo" class="logo">
-      </a>
-    </div>
+    <a class="brand" href="#home" aria-label="Subject of Ghouls home">
+      <span class="brand-mark">SOG</span>
+      <span class="brand-name">SUBJECT <span>OF</span> GHOULS</span>
+    </a>
 
-    <nav class="site-nav">
-      <ul class="nav-list">
-        <li><a href="../HTML/services.html">Services</a></li>
-        <li><a href="../HTML/government.html">Government</a></li>
-        <li><a href="../HTML/community.html">Community</a></li>
-      </ul>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-navigation" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#reports">Intel</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#doctrine">The why</a>
+      <a href="#recruit">Recruit</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-external" href="https://www.aotrevolution.com/" target="_blank" rel="noreferrer">AOTR website <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
 
-    <div class="hero-section">
-    <h1>Welcome Subject Of Ghouls</h1>
-    <section class="content-section">
-          <div class="content-header">
-        <h2>Columbus City</h2>
-    </div>
-
-        <div id="slider" class="slider">
-        <button class="prev" aria-label="Previous Slide">
-            <span class="arrow-icon">&#10094;</span>
-        </button>
-        <button class="next" aria-label="Next Slide">
-            <span class="arrow-icon">&#10095;</span>
-        </button>
-
-
-        <div class="slides-container">
-            <img src="../images/columbus buildings.jpg" class="slide active" alt="Columbus River">
-            <img src="../images/columbus park.jpg" class="slide" alt="Columbus Park">
-            <img src="../images/columbus lake.jpg" class="slide" alt="Columbus Lake">
-            <img src="../images/columbus government.jpg" class="slide" alt="Columbus Government">
-            <img src="../images/columbus government.webp" class="slide" alt="Columbus Government 2">
-            <img src="../images/columbus durk area.jpg" class="slide" alt="Columbus Durk">
-            <img src="../images/columbus buildings.jpg" class="slide" alt="Columbus Buildings">
-            <img src="../images/columbus tuff.gif" class="slide" alt="Columbus Tuff">
-            <img src="../images/columbus player.gif" class="slide" alt="Columbus Player">
+  <main>
+    <section class="hero section-shell" id="home">
+      <div class="hero-atmosphere" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Roblox <span>·</span> Action RPG <span>·</span> Adventure</p>
+        <h1><span>Subject of</span><strong>Ghouls</strong></h1>
+        <p class="hero-copy">Join the battle for freedom and take your place in the revolution. Find your squad, sharpen your build, and rise with the Subject of Ghoul regiment.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#recruit"><span aria-hidden="true">▶</span> Join the community</a>
+          <a class="button button-secondary" href="#highlights">Explore highlights</a>
         </div>
-    </div>
-
-        <div class="extra-content">
-        <p>Owner Of GHUL</p>
-    </div>
-    <div class="team-card">
-      <img src="../images/mayorginther.jpg" alt="Mayor of Columbus City">
-    </div>
-
-        <div class="stats">
-      <h2>More on Columbus City</h2>
-     
-      <div class="stats-grid">
-        <div class="stats-card">
-            <h3>Amusement parks</h3>
-            <p>Graduation Rate</p>
-            <div class="button-card">
-                <button><a href="../HTML/amusment-parks.html">Here</a></button>
-            </div>
-        </div>
-        <div class="stats-card">
-            <h3>Restaurants</h3>
-            <p>Continue Education</p>
-            <div class="button-card">
-                <button><a href="../HTML/restaurant.html">Here</a></button>
-            </div>
-        </div>
-        <div class="stats-card">
-            <h3>Parks</h3>
-            <p>Employed After Graduation</p>
-            <div class="button-card">
-                <button><a href="../HTML/parks.html">Here</a></button>
-            </div>
-        </div>
-        <div class="stats-card">
-            <h3>Tourism</h3>
-            <p>Enlistment</p>
-            <div class="button-card">
-                <button><a href="../HTML/tourism.html">Here</a></button>
-            </div>
-        </div>
-        <div class="stats-card">
-            <h3>Homes</h3>
-            <p>We got good homes</p>
-            <div class="button-card">
-                <button><a href="../HTML/homes.html">Here</a></button>
-            </div>
+        <div class="hero-facts" aria-label="Community highlights">
+          <div><strong>Squad up</strong><span>Raids &amp; events</span></div>
+          <div><strong>Build smart</strong><span>Guides &amp; intel</span></div>
+          <div><strong>Rise together</strong><span>All scouts welcome</span></div>
         </div>
       </div>
-    </div>
-
-        <div class="footer">
-    <div class="footer_links">
-        <div class="footer_links_wrapper">
-
-
-            <div class="footer_link_item">
-                <h2>Get Involved</h2>
-                <a href="../HTML/services.html">Services</a>
-                <a href="../HTML/government.html">Government</a>
-                <a href="../HTML/community.html">Community</a>
-            </div>
-
-
-            <div class="footer_link_item">
-                <h2>Get Social</h2>
-                <a href="https://www.facebook.com/ColumbusCityOH/">Facebook</a>
-                <a href="https://twitter.com/ColumbusCityOH">Twitter</a>
-                <a href="https://www.instagram.com/columbuscityoh/">Instagram</a>
-                <a href="https://www.youtube.com/channel/UC9Xo2n8s1mLh3j5l7k8z5w">YouTube</a>
-                <a href="https://www.columbuscityoh.gov/tv">Tv</a>
-            </div>
-
-
-            <div class="footer_link_item">
-                <h2>Contact Us</h2>
-                <a href="https://www.columbuscityoh.gov/contact">90 west Broad Street Columbus, Ohio 43215</a>
-                <a href="https://www.columbuscityoh.gov/contact">Phone: (614) 645-3111</a>
-            </div>
-        </div>
-    </div>
-    </div>
-
-
-                    <p class="three">
-                &copy; Columbus City 2026. All rights reserved.
-            </p>
-
-
-    <div class="social_media_icons">
-    <a href="https://www.facebook.com/columbuscityoh/" class="social_media_link">
-        <i class="fa-brands fa-facebook"></i>
-    </a>
-
-
-    <a href="https://www.instagram.com/columbuscityoh/" class="social_media_link">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-
-
-    <a href="https://www.columbuscityoh.gov/tv" target="_blank" class="social_media_link">
-        <i class="fa-solid fa-tv"></i>
-    </a>
-
-
-    <a href="https://twitter.com/ColumbusCityOH" class="social_media_link">
-        <i class="fa-brands fa-x-twitter"></i>
-    </a>
-
-
-    <a href="https://www.youtube.com/@ColumbusCityOH" class="social_media_link">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
-</div>
+      <div class="hero-emblem" aria-hidden="true">
+        <div class="emblem-ring"><img src="../images/Ghoul.png" alt=""></div>
+        <span class="emblem-caption">A regiment is only as strong as its scouts.</span>
+      </div>
+      <a class="scroll-cue" href="#about"><span></span>Scroll to explore</a>
     </section>
-  </div>
+
+    <section class="page-section about-section section-shell" id="about">
+      <div class="section-heading">
+        <p class="eyebrow">Know your mission</p>
+        <h2>About the game</h2>
+      </div>
+      <div class="about-card panel">
+        <div class="about-copy">
+          <span class="status-pill"><span class="status-dot"></span> Community built around AOTR</span>
+          <p>Attack on Titan Revolution is a community-driven action RPG on Roblox. Join the Survey Corps, master your ODM gear, and fight back against the Titans.</p>
+          <p>Perks, skills, artifacts, families, and memories let you shape your own playstyle. Learn the systems, team up for Raids, and take on the toughest challenges together.</p>
+          <div class="game-facts">
+            <div><span>Genre</span><strong>Action RPG<br>Adventure</strong></div>
+            <div><span>Platforms</span><strong>PC · Mobile<br>Tablet · Console</strong></div>
+            <div><span>Community</span><strong>Scouts welcome</strong></div>
+          </div>
+        </div>
+        <div class="about-art artwork-panel">
+          <img src="../images/aotr-about.png" alt="Attack on Titan Revolution artwork featuring a Titan and soldiers">
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section reports-section section-shell" id="reports">
+      <div class="section-heading section-heading-centered">
+        <p class="eyebrow">Tactical archives</p>
+        <h2>Intelligence reports</h2>
+        <p>Need to check a mechanic, find an update, or plan your next build? Start with these field resources.</p>
+      </div>
+      <div class="report-grid">
+        <article class="report-card panel">
+          <a class="report-artwork artwork-panel" href="https://www.aotrevolution.com/" target="_blank" rel="noreferrer" aria-label="Visit the AOT Revolution website">
+            <span class="report-tag">Field manual</span>
+            <img src="../images/aotr-intel.png" alt="Attack on Titan Revolution artwork featuring the Armored Titan and Survey Corps">
+          </a>
+          <div class="report-copy">
+            <p class="eyebrow">The field manual // official game hub</p>
+            <h3>AOT Revolution</h3>
+            <p>Visit the official game hub for information about Attack on Titan Revolution, its systems, updates, and community.</p>
+            <a class="text-link" href="https://www.aotrevolution.com/" target="_blank" rel="noreferrer">Open game hub <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="report-card panel">
+          <a class="report-artwork artwork-panel report-artwork-alt" href="https://www.aotrevolution.com/changes" target="_blank" rel="noreferrer" aria-label="Read AOT Revolution changes">
+            <span class="report-tag report-tag-red">Updates</span>
+            <img src="../images/aotr-changes.png" alt="Attack on Titan Revolution artwork featuring a Titan attacking the city">
+          </a>
+          <div class="report-copy">
+            <p class="eyebrow">The meta report // updates &amp; changes</p>
+            <h3>Patch &amp; changes log</h3>
+            <p>Keep up with balance shifts and new content before your next Raid. Check the source for the latest official changes.</p>
+            <a class="text-link text-link-red" href="https://www.aotrevolution.com/changes" target="_blank" rel="noreferrer">Read updates <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section highlights-section section-shell" id="highlights">
+      <div class="section-heading">
+        <p class="eyebrow">From the front lines</p>
+        <h2>Video highlights</h2>
+      </div>
+      <a class="featured-video panel" href="https://www.youtube.com/results?search_query=Attack+on+Titan+Revolution+trailer" target="_blank" rel="noreferrer">
+        <div class="featured-art artwork-panel">
+          <img src="../images/Ghoul.png" alt="">
+          <span class="featured-tag">Featured transmission</span>
+          <span class="play-button" aria-hidden="true">▶</span>
+        </div>
+        <div class="featured-caption"><strong>Discover Attack on Titan Revolution</strong><span>Explore videos on YouTube ↗</span></div>
+      </a>
+      <div class="video-grid">
+        <a class="video-card panel" href="https://www.youtube.com/results?search_query=Attack+on+Titan+Revolution+Colossal+Titan" target="_blank" rel="noreferrer">
+          <div class="video-art artwork-panel video-art-one"><img src="../images/Ghoul.png" alt=""><span class="play-button" aria-hidden="true">▶</span></div>
+          <div class="video-caption"><span>Raid footage</span><strong>Facing the Colossal Titan</strong></div>
+        </a>
+        <a class="video-card panel" href="https://www.youtube.com/results?search_query=Attack+on+Titan+Revolution+guide" target="_blank" rel="noreferrer">
+          <div class="video-art artwork-panel video-art-two"><img src="../images/Ghoul.png" alt=""><span class="play-button" aria-hidden="true">▶</span></div>
+          <div class="video-caption"><span>Scout training</span><strong>Builds, skills &amp; strategy</strong></div>
+        </a>
+        <a class="video-card panel" href="https://www.youtube.com/results?search_query=Attack+on+Titan+Revolution+showcase" target="_blank" rel="noreferrer">
+          <div class="video-art artwork-panel video-art-three"><img src="../images/Ghoul.png" alt=""><span class="play-button" aria-hidden="true">▶</span></div>
+          <div class="video-caption"><span>Community spotlight</span><strong>Scout showcases</strong></div>
+        </a>
+      </div>
+      <a class="more-link" href="https://www.youtube.com/results?search_query=Attack+on+Titan+Revolution" target="_blank" rel="noreferrer">Find more on YouTube <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="page-section doctrine-section section-shell" id="doctrine">
+      <div class="section-heading section-heading-centered">
+        <p class="eyebrow">Regiment roster &amp; values</p>
+        <h2>The why</h2>
+        <p>Three doctrines forged in the field. We move as one and make every run count.</p>
+      </div>
+      <div class="doctrine-card panel">
+        <article class="doctrine-row">
+          <span class="doctrine-number">01</span>
+          <div><h3>Discipline</h3><span class="mini-label">Prepared</span></div>
+          <p>We sharpen before we swing. Learn your gear, understand the mission, and make every move with purpose.</p>
+        </article>
+        <article class="doctrine-row">
+          <span class="doctrine-number">02</span>
+          <div><h3>Skill</h3><span class="mini-label">Always learning</span></div>
+          <p>Builds are studied, not guessed. Share what works, learn from each run, and grow stronger together.</p>
+        </article>
+        <article class="doctrine-row">
+          <span class="doctrine-number">03</span>
+          <div><h3>Unity</h3><span class="mini-label">One regiment</span></div>
+          <p>A scout is never alone. Queue Raids together, cover each other, and make room for every member.</p>
+        </article>
+        <div class="doctrine-warning"><span aria-hidden="true">●</span> Respect your fellow scouts. Keep the community welcoming.</div>
+      </div>
+    </section>
+
+    <section class="page-section recruit-section section-shell" id="recruit">
+      <div class="section-heading section-heading-centered">
+        <p class="eyebrow">Recruitment</p>
+        <h2>Ready to rise?</h2>
+        <p>Looking for a regiment to grind, compete, and make friends? Join Subject of Ghoul and help build something together. New and experienced scouts are welcome.</p>
+      </div>
+      <div class="recruit-grid">
+        <div class="recruit-card panel">
+          <p class="eyebrow">What we offer</p>
+          <ul>
+            <li><span class="list-icon" aria-hidden="true">✦</span> A friendly community</li>
+            <li><span class="list-icon" aria-hidden="true">✦</span> Squad runs &amp; group Raids</li>
+            <li><span class="list-icon" aria-hidden="true">✦</span> Tips, guides &amp; build talk</li>
+            <li><span class="list-icon" aria-hidden="true">✦</span> Events and activities</li>
+            <li><span class="list-icon" aria-hidden="true">✦</span> A place to grow together</li>
+          </ul>
+        </div>
+        <div class="recruit-card panel">
+          <p class="eyebrow">Scouts we welcome</p>
+          <ul>
+            <li><span class="list-icon" aria-hidden="true">✦</span> Active AOTR players</li>
+            <li><span class="list-icon" aria-hidden="true">✦</span> Helpful staff &amp; organizers</li>
+            <li><span class="list-icon" aria-hidden="true">✦</span> Content creators</li>
+            <li><span class="list-icon" aria-hidden="true">✦</span> Friendly, respectful members</li>
+          </ul>
+        </div>
+      </div>
+      <div class="recruit-callout panel">
+        <p class="eyebrow">Your next chapter starts here</p>
+        <h3>Rise through the ranks.<br><span>Build Subject of Ghoul with us.</span></h3>
+        <a class="button button-primary" href="https://discord.com/invite/QcCfeXmCjn" target="_blank" rel="noreferrer">Join our Discord server <span aria-hidden="true">↗</span></a>
+        <p class="callout-note">Subject of Ghoul — we rise together.</p>
+      </div>
+    </section>
+
+    <section class="page-section faq-section section-shell" id="faq">
+      <div class="section-heading section-heading-centered">
+        <p class="eyebrow">Scout handbook</p>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item panel">
+          <summary><span class="faq-number">01</span><span>What is Attack on Titan Revolution?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Attack on Titan Revolution is an action RPG experience on Roblox inspired by the Attack on Titan universe. Visit the official game hub for current details.</p>
+        </details>
+        <details class="faq-item panel">
+          <summary><span class="faq-number">02</span><span>Is it free to play?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Check the Roblox experience page for the latest access and purchase details.</p>
+        </details>
+        <details class="faq-item panel">
+          <summary><span class="faq-number">03</span><span>How do I get codes?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Codes and their availability can change. Check official AOTR announcements and the game's community channels for current codes.</p>
+        </details>
+        <details class="faq-item panel">
+          <summary><span class="faq-number">04</span><span>How do I become a Titan Shifter?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Progression systems can change with updates. Consult the official game resources and current guides for the latest requirements.</p>
+        </details>
+        <details class="faq-item panel">
+          <summary><span class="faq-number">05</span><span>What are Families?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Families are part of AOTR's character progression. Their effects and availability may change, so check the current in-game information.</p>
+        </details>
+        <details class="faq-item panel">
+          <summary><span class="faq-number">06</span><span>What platforms can I play on?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Roblox is available across multiple devices. Check the Roblox listing and your device's compatibility for the latest platform support.</p>
+        </details>
+        <details class="faq-item panel">
+          <summary><span class="faq-number">07</span><span>Is there any benefit to joining the group?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Join Subject of Ghoul to find other players, coordinate group activities, and share tips with the community.</p>
+        </details>
+        <details class="faq-item panel">
+          <summary><span class="faq-number">08</span><span>Where can I find answers to more specific questions?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Start with the official AOTR website and game community. You can also ask fellow scouts in your community channels.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <div class="footer-status panel" aria-label="Community information">
+      <div><span>Community</span><strong>Scouts welcome</strong></div>
+      <div><span>Game</span><strong>Attack on Titan Revolution</strong></div>
+      <div><span>Play on</span><strong>Roblox</strong></div>
+      <div><span>Our focus</span><strong>Squad up. Rise together.</strong></div>
+    </div>
+    <div class="footer-cta">
+      <p class="eyebrow">Final transmission</p>
+      <h2>Join the<br><span>regiment</span></h2>
+      <p>The gates are open and the next Raid awaits. There is a place for every scout willing to stand with the team.</p>
+      <a class="button button-primary" href="#recruit">Explore recruitment <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="footer-bottom">
+      <a class="brand" href="#home" aria-label="Subject of Ghouls home">
+        <span class="brand-mark">SOG</span>
+        <span class="brand-name">SUBJECT <span>OF</span> GHOULS</span>
+      </a>
+      <p>© <span id="current-year">2026</span> Subject of Ghouls · Unofficial fan community</p>
+      <div><a href="#reports">AOTR resources</a><a href="#recruit">Recruitment</a><a href="#faq">FAQ</a></div>
+    </div>
+  </footer>
+  <script src="../CSS/JAVA%20Script/style.js"></script>
 </body>
 </html>
