@@ -68,11 +68,13 @@ const serverStatus = document.querySelector("#discord-server-status");
 const activeCount = document.querySelector("#discord-active-count");
 const serverStatusLight = document.querySelector("#discord-status-light");
 const activeCountLight = document.querySelector("#discord-active-light");
+const serverCreatedDate = document.querySelector("#discord-created-date");
 
-if (serverStatus && activeCount && serverStatusLight && activeCountLight) {
+if (serverStatus && activeCount && serverStatusLight && activeCountLight && serverCreatedDate) {
   const updateDiscordStatus = async () => {
     serverStatus.textContent = "Checking…";
     activeCount.textContent = "Loading…";
+    serverCreatedDate.textContent = "Loading…";
 
     try {
       const response = await fetch(
@@ -87,8 +89,21 @@ if (serverStatus && activeCount && serverStatusLight && activeCountLight) {
       const invite = await response.json();
       const presenceCount = invite.approximate_presence_count;
 
-      if (!invite.guild || !Number.isInteger(presenceCount) || presenceCount < 0) {
+      if (
+        !invite.guild ||
+        !/^\d+$/.test(invite.guild.id) ||
+        !Number.isInteger(presenceCount) ||
+        presenceCount < 0
+      ) {
         throw new Error("Discord did not return a valid server presence count");
+      }
+
+      const discordEpoch = 1420070400000n;
+      const createdAtMilliseconds = Number((BigInt(invite.guild.id) >> 22n) + discordEpoch);
+      const createdAt = new Date(createdAtMilliseconds);
+
+      if (Number.isNaN(createdAt.getTime())) {
+        throw new Error("Discord returned an invalid server creation date");
       }
 
       serverStatus.textContent = "Online";
@@ -97,6 +112,12 @@ if (serverStatus && activeCount && serverStatusLight && activeCountLight) {
       activeCount.textContent = presenceCount.toLocaleString();
       activeCount.title = "Approximate number of members online, reported by Discord.";
       activeCountLight.classList.add("is-active");
+      serverCreatedDate.textContent = new Intl.DateTimeFormat(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }).format(createdAt);
+      serverCreatedDate.title = `Discord server created ${createdAt.toISOString().slice(0, 10)}.`;
     } catch (error) {
       serverStatus.textContent = "Unavailable";
       serverStatus.title = error instanceof Error ? error.message : "Unable to load Discord server status.";
@@ -104,6 +125,8 @@ if (serverStatus && activeCount && serverStatusLight && activeCountLight) {
       activeCount.textContent = "Unavailable";
       activeCount.title = "Discord's approximate presence count could not be loaded.";
       activeCountLight.classList.remove("is-active");
+      serverCreatedDate.textContent = "Unavailable";
+      serverCreatedDate.title = error instanceof Error ? error.message : "Unable to load Discord server creation date.";
     }
   };
 

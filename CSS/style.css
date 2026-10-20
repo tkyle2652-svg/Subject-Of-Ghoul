@@ -1034,7 +1034,7 @@ p {
 
 .footer-status {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   overflow: hidden;
 }
 
@@ -1462,8 +1462,16 @@ p {
     border-right: 0;
   }
 
-  .footer-status > div:nth-child(-n + 2) {
+  .footer-status > div:nth-child(4) {
+    border-right: 0;
+  }
+
+  .footer-status > div:nth-child(-n + 4) {
     border-bottom: 1px solid var(--border);
+  }
+
+  .footer-status > div:nth-child(5) {
+    grid-column: span 2;
   }
 
   .footer-status > div {
