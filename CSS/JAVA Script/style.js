@@ -1,3 +1,31 @@
+const layoutPreview = new URLSearchParams(window.location.search).get("view");
+
+if (layoutPreview === "mobile" || layoutPreview === "desktop") {
+  document.body.classList.add("layout-preview-active");
+
+  const pageUrl = new URL(window.location.href);
+  pageUrl.searchParams.delete("view");
+
+  const previewBar = document.createElement("nav");
+  previewBar.className = "layout-preview-bar";
+  previewBar.setAttribute("aria-label", "Layout preview options");
+  previewBar.innerHTML = `
+    <span>Layout preview</span>
+    <a href="?view=mobile#home" ${layoutPreview === "mobile" ? 'aria-current="page"' : ""}>Mobile</a>
+    <a href="?view=desktop#home" ${layoutPreview === "desktop" ? 'aria-current="page"' : ""}>Desktop</a>
+    <a href="${pageUrl.href}" class="layout-preview-responsive">Responsive page</a>
+  `;
+
+  const previewFrame = document.createElement("iframe");
+  previewFrame.className = `layout-preview-frame layout-preview-frame-${layoutPreview}`;
+  previewFrame.title = `${layoutPreview === "mobile" ? "Mobile" : "Desktop"} version of Subject of Ghouls`;
+  previewFrame.referrerPolicy = "strict-origin-when-cross-origin";
+
+  previewFrame.src = pageUrl.href;
+
+  document.body.replaceChildren(previewBar, previewFrame);
+}
+
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#site-navigation");
 
@@ -132,4 +160,56 @@ if (serverStatus && activeCount && serverStatusLight && activeCountLight && serv
 
   updateDiscordStatus();
   window.setInterval(updateDiscordStatus, 5 * 60 * 1000);
+}
+
+const discordAvatarEndpoint = document.querySelector('meta[name="discord-avatar-api"]')?.content.trim();
+const staffAvatars = [...document.querySelectorAll(".staff-avatar[data-discord-user-id]")];
+
+if (discordAvatarEndpoint && staffAvatars.length > 0) {
+  const updateStaffAvatars = async () => {
+    try {
+      const endpoint = new URL(discordAvatarEndpoint);
+      if (endpoint.protocol !== "https:") {
+        throw new Error("The Discord avatar endpoint must use HTTPS.");
+      }
+
+      const response = await fetch(endpoint, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      if (!response.ok) {
+        throw new Error(`Discord avatar endpoint returned HTTP ${response.status}.`);
+      }
+
+      const result = await response.json();
+      if (!result.avatars || typeof result.avatars !== "object") {
+        throw new Error("Discord avatar endpoint returned an invalid response.");
+      }
+
+      if (Array.isArray(result.errors) && result.errors.length > 0) {
+        console.warn("Discord avatar refresh failed for some staff IDs.", result.errors);
+      }
+
+      for (const image of staffAvatars) {
+        const avatarUrl = result.avatars[image.dataset.discordUserId];
+        if (avatarUrl === null || avatarUrl === undefined) {
+          continue;
+        }
+
+        const parsedAvatarUrl = new URL(avatarUrl);
+        if (parsedAvatarUrl.protocol !== "https:" || parsedAvatarUrl.hostname !== "cdn.discordapp.com") {
+          throw new Error("Discord avatar endpoint returned an unexpected image URL.");
+        }
+
+        if (image.src !== parsedAvatarUrl.href) {
+          image.src = parsedAvatarUrl.href;
+        }
+      }
+    } catch (error) {
+      console.error("Unable to refresh Discord staff avatars.", error);
+    }
+  };
+
+  updateStaffAvatars();
+  window.setInterval(updateStaffAvatars, 5 * 60 * 1000);
 }

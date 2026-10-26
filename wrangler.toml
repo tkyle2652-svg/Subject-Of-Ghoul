@@ -1,0 +1,6 @@
+name = "subject-of-ghouls-discord-avatars"
+main = "worker/index.mjs"
+compatibility_date = "2026-10-25"
+
+[vars]
+DISCORD_GUILD_ID = "1466672214592983052"
