@@ -61,6 +61,91 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
+const faqItems = [...document.querySelectorAll(".faq-item")];
+
+if (faqItems.length > 0) {
+  document.body.classList.add("faq-enhanced");
+
+  const faqAnimations = new WeakMap();
+  const faqOpenStates = new WeakMap(faqItems.map((item) => [item, item.open]));
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  for (const item of faqItems) {
+    const summary = item.querySelector("summary");
+    const answer = item.querySelector(".faq-answer");
+
+    if (!summary || !answer) {
+      continue;
+    }
+
+    summary.setAttribute("aria-expanded", String(item.open));
+
+    item.addEventListener("toggle", () => {
+      faqOpenStates.set(item, item.open);
+      summary.setAttribute("aria-expanded", String(item.open));
+    });
+
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const currentAnimation = faqAnimations.get(item);
+      const currentHeight = answer.getBoundingClientRect().height;
+      const shouldOpen = !faqOpenStates.get(item);
+
+      if (currentAnimation) {
+        answer.style.height = `${currentHeight}px`;
+        currentAnimation.cancel();
+      }
+
+      faqOpenStates.set(item, shouldOpen);
+      summary.setAttribute("aria-expanded", String(shouldOpen));
+
+      if (shouldOpen) {
+        item.open = true;
+      }
+
+      const targetHeight = shouldOpen ? answer.scrollHeight : 0;
+      if (reducedMotion.matches) {
+        item.open = shouldOpen;
+        answer.style.height = "";
+        faqAnimations.delete(item);
+        return;
+      }
+
+      const animation = answer.animate(
+        [
+          { height: `${currentHeight}px`, opacity: shouldOpen ? 0.72 : 1, transform: `translateY(${shouldOpen ? "8px" : "0"})` },
+          { height: `${targetHeight}px`, opacity: shouldOpen ? 1 : 0, transform: `translateY(${shouldOpen ? "0" : "-6px"})` },
+        ],
+        {
+          duration: shouldOpen ? 360 : 260,
+          easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        },
+      );
+
+      faqAnimations.set(item, animation);
+      animation.addEventListener("finish", () => {
+        if (faqAnimations.get(item) !== animation) {
+          return;
+        }
+
+        if (!shouldOpen) {
+          item.open = false;
+        }
+
+        answer.style.height = "";
+        faqAnimations.delete(item);
+      }, { once: true });
+
+      animation.addEventListener("cancel", () => {
+        if (faqAnimations.get(item) === animation) {
+          faqAnimations.delete(item);
+        }
+      }, { once: true });
+    });
+  }
+}
+
 const regimentTime = document.querySelector("#regiment-time");
 const connectionStatus = document.querySelector("#connection-status");
 
