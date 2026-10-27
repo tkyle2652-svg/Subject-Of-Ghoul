@@ -1945,6 +1945,14 @@ p {
   }
 }
 
+.page-text-pending {
+  clip-path: inset(0 100% 0 0);
+}
+
+.page-text-writing {
+  clip-path: inset(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

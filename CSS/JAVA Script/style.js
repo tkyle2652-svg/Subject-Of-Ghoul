@@ -26,6 +26,67 @@ if (layoutPreview === "mobile" || layoutPreview === "desktop") {
   document.body.replaceChildren(previewBar, previewFrame);
 }
 
+const pageTextElements = [
+  ...document.querySelectorAll(
+    ".site-header .brand-name, main h1 > span, main h1 > strong, main h2, main h3, main p, main li:not(.staff-card), main summary, main .hero-facts strong, main .hero-facts span, main .text-link, main .more-link, main .video-caption span, main .video-caption strong, main .button, .footer-status .metric-label, .footer-status strong, .footer-cta h2, .footer-cta p, .footer-cta .button, .footer-bottom > p, .footer-bottom > div a",
+  ),
+].filter((element) => !element.closest(".staff-roster"));
+
+const pageTextMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (pageTextElements.length > 0 && !pageTextMotion.matches && "IntersectionObserver" in window) {
+  const revealPageText = new IntersectionObserver((entries, observer) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) {
+        continue;
+      }
+
+      const element = entry.target;
+      const styles = getComputedStyle(element);
+      const animation = element.animate(
+        [
+          { clipPath: "inset(0 100% 0 0)" },
+          { clipPath: "inset(0)" },
+        ],
+        {
+          duration: Number.parseFloat(styles.getPropertyValue("--page-text-duration")),
+          delay: Number.parseFloat(styles.getPropertyValue("--page-text-delay")),
+          easing: `steps(${styles.getPropertyValue("--page-text-steps").trim()}, end)`,
+          fill: "both",
+        },
+      );
+
+      element.classList.add("page-text-writing");
+      animation.addEventListener("finish", () => {
+        element.classList.remove("page-text-pending");
+        animation.cancel();
+      }, { once: true });
+      observer.unobserve(entry.target);
+    }
+  }, { rootMargin: "0px" });
+
+  const groupDelays = new WeakMap();
+
+  for (const element of pageTextElements) {
+    const text = element.textContent.trim();
+    const group = element.closest("section, footer, header") || element.parentElement;
+    const groupIndex = groupDelays.get(group) || 0;
+    const characterCount = [...text].length;
+
+    groupDelays.set(group, groupIndex + 1);
+    element.classList.add("page-text-pending");
+    element.style.setProperty("--page-text-steps", String(Math.min(characterCount, 60)));
+    element.style.setProperty("--page-text-duration", `${Math.min(Math.max(characterCount * 24, 360), 1800)}ms`);
+    element.style.setProperty("--page-text-delay", `${Math.min(groupIndex * 55, 440)}ms`);
+    revealPageText.observe(element);
+  }
+} else if (pageTextElements.length > 0 && !pageTextMotion.matches) {
+  pageTextElements.forEach((element) => {
+    element.classList.remove("page-text-pending");
+    element.classList.add("page-text-writing");
+  });
+}
+
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#site-navigation");
 
