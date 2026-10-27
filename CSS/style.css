@@ -1091,6 +1091,13 @@ p {
   color: var(--gold);
 }
 
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 .callout-note {
   margin: 19px 0 0;
   color: #969696;
