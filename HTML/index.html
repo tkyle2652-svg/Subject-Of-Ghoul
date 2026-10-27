@@ -24,14 +24,14 @@
     </button>
 
     <nav class="site-nav" id="site-navigation" aria-label="Main navigation">
-      <a href="#about">About</a>
-      <a href="#reports">Intel</a>
-      <a href="#highlights">Highlights</a>
-      <a href="#doctrine">The why</a>
-      <a href="#staff">Staff</a>
-      <a href="#recruit">Recruit</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-external" href="https://www.aotrevolution.com/" target="_blank" rel="noreferrer">AOTR website <span aria-hidden="true">↗</span></a>
+      <a href="#about"><span class="nav-link-text">About</span></a>
+      <a href="#reports"><span class="nav-link-text">Intel</span></a>
+      <a href="#highlights"><span class="nav-link-text">Highlights</span></a>
+      <a href="#doctrine"><span class="nav-link-text">The why</span></a>
+      <a href="#staff"><span class="nav-link-text">Staff</span></a>
+      <a href="#recruit"><span class="nav-link-text">Recruit</span></a>
+      <a href="#faq"><span class="nav-link-text">FAQ</span></a>
+      <a class="nav-external" href="https://www.aotrevolution.com/" target="_blank" rel="noreferrer"><span class="nav-link-text">AOTR website</span> <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
 
@@ -177,7 +177,13 @@
         <h2>Staff teams</h2>
         <p>The staff roles that represent the team behind our Discord community.</p>
       </div>
-      <ol class="staff-grid" aria-label="Discord staff roles">
+      <div class="staff-roster panel">
+        <button class="staff-roster-toggle" type="button" aria-expanded="false" aria-controls="staff-grid">
+          <span class="staff-toggle-icon" aria-hidden="true">+</span>
+          <span class="staff-toggle-label">Click to view all staff</span>
+          <span class="staff-toggle-count">13 roles</span>
+        </button>
+        <ol class="staff-grid" id="staff-grid" aria-label="Discord staff roles">
         <li class="staff-card panel"><span class="staff-index">01</span><h3>Owner</h3><p class="staff-members"><a class="staff-profile" href="https://discord.com/users/1333084356469719126" target="_blank" rel="noopener noreferrer"><img class="staff-avatar" data-discord-user-id="1333084356469719126" src="../images/kaido-avatar.png" alt="">@kaido_85k</a></p></li>
         <li class="staff-card panel"><span class="staff-index">02</span><h3>Co-owner</h3><p class="staff-members"><a class="staff-profile" href="https://discord.com/users/1155508137281990786" target="_blank" rel="noopener noreferrer"><img class="staff-avatar" data-discord-user-id="1155508137281990786" src="../images/nugu-avatar.webp" alt="">@nugu_the_fryer</a></p></li>
         <li class="staff-card panel"><span class="staff-index">03</span><h3>Server manager</h3><p class="staff-members"><a class="staff-profile" href="https://discord.com/users/1020798742699450458" target="_blank" rel="noopener noreferrer"><img class="staff-avatar" data-discord-user-id="1020798742699450458" src="../images/drk-avatar.webp" alt="">@drk_879</a></p></li>
@@ -191,7 +197,8 @@
         <li class="staff-card panel"><span class="staff-index">11</span><h3>Ticket assistance staff</h3><p class="staff-members">N/A</p></li>
         <li class="staff-card panel"><span class="staff-index">12</span><h3>Voice chat staff</h3><p class="staff-members">N/A</p></li>
         <li class="staff-card panel"><span class="staff-index">13</span><h3>Helper</h3><p class="staff-members"><a class="staff-profile" href="https://discord.com/users/1235919266587475990" target="_blank" rel="noopener noreferrer" aria-label="Open Helper's Discord profile"><img class="staff-avatar" data-discord-user-id="1235919266587475990" src="../images/santiwheredahoesat.webp" alt="">santiwheredahoesat</a></p></li>
-      </ol>
+        </ol>
+      </div>
     </section>
 
     <section class="page-section recruit-section section-shell" id="recruit">

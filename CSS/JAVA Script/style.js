@@ -30,28 +30,58 @@ const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#site-navigation");
 
 if (menuButton && navigation) {
-  const closeMenu = () => {
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", "Open navigation");
-    navigation.classList.remove("is-open");
+  const navLabels = [...navigation.querySelectorAll(".nav-link-text")];
+  const mobileNavigation = window.matchMedia("(max-width: 680px)");
+
+  const setMenuOpen = (isOpen) => {
+    if (mobileNavigation.matches) {
+      if (isOpen) {
+        const maxHeight = Math.min(navigation.scrollHeight, window.innerHeight * 0.8, 520);
+        navigation.style.setProperty("--nav-expanded-height", `${maxHeight}px`);
+      } else {
+        navigation.style.removeProperty("--nav-expanded-height");
+      }
+    } else {
+      navigation.style.removeProperty("--nav-expanded-height");
+    }
+
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    navigation.classList.toggle("is-open", isOpen);
   };
 
   menuButton.addEventListener("click", () => {
     const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!isOpen));
-    menuButton.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
-    navigation.classList.toggle("is-open", !isOpen);
+    if (!isOpen && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      navLabels.forEach((label, index) => {
+        const characterCount = [...label.textContent.trim()].length;
+        label.style.setProperty("--nav-type-steps", String(characterCount));
+        label.style.setProperty("--nav-type-duration", `${Math.min(characterCount * 48, 900)}ms`);
+        label.style.setProperty("--nav-type-delay", `${index * 140}ms`);
+      });
+    }
+
+    setMenuOpen(!isOpen);
   });
 
   navigation.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLAnchorElement) {
-      closeMenu();
+    if (event.target instanceof Element && event.target.closest("a")) {
+      setMenuOpen(false);
     }
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      closeMenu();
+      setMenuOpen(false);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (menuButton.getAttribute("aria-expanded") === "true" && mobileNavigation.matches) {
+      const maxHeight = Math.min(navigation.scrollHeight, window.innerHeight * 0.8, 520);
+      navigation.style.setProperty("--nav-expanded-height", `${maxHeight}px`);
+    } else {
+      navigation.style.removeProperty("--nav-expanded-height");
     }
   });
 }
@@ -59,6 +89,51 @@ if (menuButton && navigation) {
 const year = document.querySelector("#current-year");
 if (year) {
   year.textContent = String(new Date().getFullYear());
+}
+
+const staffRoster = document.querySelector(".staff-roster");
+const staffRosterToggle = document.querySelector(".staff-roster-toggle");
+const staffGrid = document.querySelector("#staff-grid");
+
+if (staffRoster && staffRosterToggle && staffGrid) {
+  const staffCards = [...staffGrid.querySelectorAll(".staff-card")];
+  const staffCardAnimations = [];
+
+  staffRoster.classList.add("is-collapsed");
+  staffGrid.inert = true;
+  staffGrid.setAttribute("aria-hidden", "true");
+  staffRosterToggle.setAttribute("aria-expanded", "false");
+
+  staffRosterToggle.addEventListener("click", () => {
+    const shouldExpand = staffRoster.classList.contains("is-collapsed");
+    staffCardAnimations.forEach((animation) => animation.cancel());
+    staffCardAnimations.length = 0;
+
+    staffRoster.classList.toggle("is-collapsed", !shouldExpand);
+    staffRosterToggle.setAttribute("aria-expanded", String(shouldExpand));
+    staffRosterToggle.querySelector(".staff-toggle-label").textContent = shouldExpand
+      ? "Click to hide staff"
+      : "Click to view all staff";
+    staffGrid.inert = !shouldExpand;
+    staffGrid.setAttribute("aria-hidden", String(!shouldExpand));
+
+    if (shouldExpand && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      staffCards.forEach((card, index) => {
+        const animation = card.animate(
+          [
+            { opacity: 0, transform: "translateY(-18px) scale(0.94)" },
+            { opacity: 1, transform: "translateY(0) scale(1)" },
+          ],
+          {
+            duration: 850,
+            delay: index * 100,
+            easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+          },
+        );
+        staffCardAnimations.push(animation);
+      });
+    }
+  });
 }
 
 const faqItems = [...document.querySelectorAll(".faq-item")];
